@@ -31,7 +31,7 @@ from qgis.core import QgsProject, QgsMapLayer, QgsFeature, QgsGeometry, QgsExpre
 
 # Import the code for the dialog
 from .changeDataSource_dialog import changeDataSourceDialog,dataSourceBrowser
-from .setdatasource import setDataSource
+from .setDataSource import setDataSource
 import os.path
 
 
