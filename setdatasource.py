@@ -33,7 +33,7 @@ from qgis.PyQt.QtGui import QStandardItemModel, QStandardItem
 
 import os.path
 
-Ui_changeDataSourceDialog = uic.loadUiType(os.path.join(os.path.dirname(__file__), 'ui_changeDSDialog.ui'))[0]
+Ui_changeDataSourceDialog = uic.loadUiType(os.path.join(os.path.dirname(__file__), 'ui', 'ui_changeDSDialog.ui'))[0]
 
 class setDataSource(QtWidgets.QDialog, Ui_changeDataSourceDialog):
 

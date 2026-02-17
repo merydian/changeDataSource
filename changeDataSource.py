@@ -166,14 +166,14 @@ class changeDataSource(object):
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
 
-        icon_path = os.path.join(self.plugin_dir,"icon.png")
+        icon_path = os.path.join(self.plugin_dir, "icon", "icon.png")
         self.add_action(
             icon_path,
             text=self.tr(u'changeDataSource'),
             callback=self.run,
             parent=self.iface.mainWindow())
-        self.changeDSActionVector = QAction(QIcon(os.path.join(self.plugin_dir,"icon.png")), u"Change vector datasource", self.iface )
-        self.changeDSActionRaster = QAction(QIcon(os.path.join(self.plugin_dir,"icon.png")), u"Change raster datasource", self.iface )
+        self.changeDSActionVector = QAction(QIcon(os.path.join(self.plugin_dir, "icon", "icon.png")), u"Change vector datasource", self.iface )
+        self.changeDSActionRaster = QAction(QIcon(os.path.join(self.plugin_dir, "icon", "icon.png")), u"Change raster datasource", self.iface )
         self.iface.addCustomActionForLayerType(self.changeDSActionVector,"", QgsMapLayer.LayerType.VectorLayer,True)
         self.iface.addCustomActionForLayerType(self.changeDSActionRaster,"", QgsMapLayer.LayerType.RasterLayer,True)
         self.changeDSTool = setDataSource(self, )
