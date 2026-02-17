@@ -27,8 +27,9 @@ import os
 from qgis.PyQt import QtGui, uic, QtWidgets
 from qgis.PyQt.QtCore import pyqtSignal
 from qgis.core import QgsBrowserModel, QgsMimeDataUtils
-from .changeDataSource_dialog_base import Ui_changeDataSourceDialogBase
-from .browsedatasource import Ui_dataSourceBrowser
+
+Ui_changeDataSourceDialogBase = uic.loadUiType(os.path.join(os.path.dirname(__file__), 'changeDataSource_dialog_base.ui'))[0]
+Ui_dataSourceBrowser = uic.loadUiType(os.path.join(os.path.dirname(__file__), 'browsedatasource.ui'))[0]
 
 class changeDataSourceDialog(QtWidgets.QDialog, Ui_changeDataSourceDialogBase):
 
@@ -95,7 +96,7 @@ class dataSourceBrowser(QtWidgets.QDialog, Ui_dataSourceBrowser):
     def uri(title=""):
         dialog = dataSourceBrowser()
         dialog.setWindowTitle(title)
-        result = dialog.exec_()
+        result = dialog.exec()
         dialog.show()
         if dialog.acceptedFlag:
             return (dialog.result)
