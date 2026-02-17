@@ -24,16 +24,14 @@ from __future__ import print_function
 from __future__ import absolute_import
 from builtins import range
 from builtins import object
-from qgis.PyQt.QtCore import *
-from qgis.PyQt.QtGui import *
-from qgis.PyQt.QtXml import *
-from qgis.PyQt.QtWidgets import *
-from qgis.core import *
+from qgis.PyQt.QtCore import QCoreApplication, Qt, pyqtSignal, QSettings, QTranslator, qVersion
+from qgis.PyQt.QtGui import QIcon, QFontMetrics
+from qgis.PyQt.QtWidgets import QTableWidgetItem, QAction, QDialogButtonBox, QLineEdit, QPushButton, QSizePolicy, QToolButton, QStyle, QHeaderView, QApplication
+from qgis.core import QgsProject, QgsMapLayer, QgsFeature, QgsGeometry, QgsExpressionContext, QgsExpressionContextScope, QgsExpression, QgsFeatureRequest, Qgis, QgsVectorLayer
 
 # Import the code for the dialog
 from .changeDataSource_dialog import changeDataSourceDialog,dataSourceBrowser
 from .setdatasource import setDataSource
-from qgis.gui import QgsMessageBar
 import os.path
 
 
@@ -376,9 +374,7 @@ class changeDataSource(object):
                 indexes.append(row)
                 self.replaceList.append(QgsProject.instance().mapLayer(self.dlg.layerTable.cellWidget(row,0).text()))
         for row in indexes:
-            layerId = self.dlg.layerTable.cellWidget(row,0)
             cell = self.dlg.layerTable.cellWidget(row,3)
-            orig = cell.text()
             if self.dlg.mFieldExpressionWidget.isValidExpression():
                 exp = QgsExpression(self.dlg.mFieldExpressionWidget.currentText())
                 scope.setFeature(next(self.layersPropLayer.getFeatures(QgsFeatureRequest(row+1))))
@@ -398,7 +394,6 @@ class changeDataSource(object):
             rowProviderCell = self.dlg.layerTable.cellWidget(row,2)
             rowDatasourceCell = self.dlg.layerTable.cellWidget(row,3)
             rowLayerID = self.dlg.layerTable.cellWidget(row,0).text()
-            rowLayerName = self.dlg.layerTable.cellWidget(row,1).text()
             rowProvider = rowProviderCell.text()
             rowDatasource = rowDatasourceCell.text()
             rowLayer = QgsProject.instance().mapLayer(rowLayerID)

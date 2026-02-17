@@ -24,13 +24,12 @@ from __future__ import absolute_import
 
 from builtins import str
 from builtins import range
-from qgis.core import *
-from qgis.PyQt.QtCore import *
-from qgis.PyQt.QtGui import *
-from qgis.PyQt import QtWidgets
-from qgis.PyQt.QtXml import *
+from qgis.core import QgsProject, QgsMapLayer, QgsVectorLayer, QgsRasterLayer, Qgis, QgsReadWriteContext
+from qgis.PyQt import QtWidgets 
+from qgis.PyQt.QtXml import QDomDocument
 from .changeDataSource_dialog import dataSourceBrowser
 from qgis.PyQt import uic
+from qgis.PyQt.QtGui import QStandardItemModel, QStandardItem
 
 import os.path
 
@@ -125,7 +124,7 @@ class setDataSource(QtWidgets.QDialog, Ui_changeDataSourceDialog):
         '''
         convenience method to rebuild joins if lost
         '''
-        for layer in QgsMapLayerRegistry.mapLayers().values():
+        for layer in QgsProject.instance().mapLayers().values():
             if layer.type() == QgsMapLayer.LayerType.VectorLayer:
                 for joinDef in layer.vectorJoins():
                     if joinDef.joinLayerId == oldLayer.id():
